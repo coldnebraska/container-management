@@ -1,0 +1,24 @@
+{
+  "name": "container-management",
+  "productName": "Container Manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coldnebraska/container-management.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coldnebraska/container-management/issues"
+  },
+  "homepage": "https://github.com/coldnebraska/container-management#readme",
+  "dependencies": {
+    "electron": "^42.3.3",
+    "toastify-js": "^1.12.0"
+  }
+}
