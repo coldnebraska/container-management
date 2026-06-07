@@ -7,8 +7,8 @@ const isMac = process.platform === 'darwin'
 function createMainWindow() {
     const mainWindow = new BrowserWindow({
         title: 'Container Manager',
-        width: isDev ? 1000 : 500,
-        height: 600
+        width: isDev ? 1250 : 1000,
+        height: 650
     })
 
     // Open devtools if in dev env
@@ -22,8 +22,8 @@ function createMainWindow() {
 function createAboutWindow() {
     const aboutWindow = new BrowserWindow({
         title: 'About Container Manager',
-        width: isDev ? 1000 : 500,
-        height: 600
+        width: isDev ? 1250 : 1000,
+        height: 650
     })
 
     aboutWindow.loadFile(path.join(__dirname, './renderer/about.html'))
