@@ -1,0 +1,148 @@
+body {
+    display: flex;
+    background-color: rgb(245, 245, 245);
+    margin: 0;
+    height: 100vh;
+}
+
+fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+details:hover {
+    cursor: pointer;
+}
+
+.container {
+    border-right: 1px solid grey;
+    padding: 0;
+}
+
+.container > * > * {
+    padding: 0 10px;
+}
+
+.container:nth-child(2) {
+    flex: 1;
+}
+
+.container:last-child {
+    border: 0;
+}
+
+.container-header,
+.container .item-container .search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(85, 85, 85);
+    height: 25px;
+}
+
+.container-header p {
+    margin: 0;
+    padding: 0;
+    color: rgb(85, 85, 85);
+}
+
+.destination details {
+    margin-bottom: 20px;
+}
+
+.destination summary {
+    color: rgb(85, 85, 85);
+}
+
+.destination .amazon p,
+.destination .other p {
+    margin: 5px 0;
+    padding-left: 30px;
+    font-weight: bold;
+}
+
+.destination .amazon .blue {
+    color: blue;
+}
+
+.destination .amazon .green {
+    color: green;
+}
+
+.destination .amazon .red {
+    color: red;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-container .search input {
+    width: 40%;
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.item > * {
+    margin: 0 5px;
+}
+
+.item:nth-child(odd) {
+    background-color: rgb(221, 221, 221);
+}
+
+.item :last-child {
+    justify-self: flex-end;
+    margin-left: auto;
+}
+
+.process {
+    display: flex;
+    flex-direction: column;
+}
+
+.weight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.weight input {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+.dimensions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.dimensions input {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

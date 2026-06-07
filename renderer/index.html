@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/renderer.js" defer></script>
+    <title>Container Manager</title>
+</head>
+<body>
+    <div class="container">
+        <div class="destination">
+            <div class="container-header">
+                <p>Destination/Container</p>
+            </div>
+    
+            <details open class="amazon">
+                <summary>Amazon</summary>
+    
+                <div class="collapsible">
+                    <div class="blue">
+                        <p>Blue</p>
+                    </div>
+        
+                    <div class="green">
+                        <p>Green</p>
+                    </div>
+        
+                    <div class="red">
+                        <p>Red</p>
+                    </div>
+                </div>
+            </details>
+    
+            <details open class="other">
+                <summary>Happy</summary>
+    
+                <div class="happy-returns">
+                    <p>Happy</p>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="item-container">
+            <div class="search">
+                <input placeholder="Type RRMA here...">
+            </div>
+    
+            <div class="item-list">
+                <div class="item">
+                    <input type="checkbox">
+                    <p id="rrma">D3xhH49RRMA</p>
+                    <p>Thurs 6/4</p>
+                </div>
+    
+                <div class="item">
+                    <input type="checkbox">
+                    <p id="rrma">ydF7lBwRRMA</p>
+                    <p>Fri 6/5</p>
+                </div>
+    
+                <div class="item">
+                    <input type="checkbox">
+                    <p id="rrma">ydF7lBwRRMA</p>
+                    <p>Fri 6/5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="process">
+            <div class="container-header">
+                <p>Process</p>
+            </div>
+            <div class="weight">
+                <p>Weight</p>
+                <!-- change inputs to divs with auto weight -->
+                 <div>
+                     <input placeholder="0">
+                     <input placeholder="0">
+                 </div>
+            </div>
+
+            <div class="dimensions">
+                <p>Dimensions</p>
+                <fieldset id="dimension-inputs" disabled>
+                    <input placeholder="18" value="18">
+                    <input placeholder="18" value="18">
+                    <input placeholder="18" value="18">
+                </fieldset>
+            </div>
+
+            <div class="actions">
+                <button id="override-dimensions">Override</button>
+                <button>Closeout & Ship</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
