@@ -115,7 +115,9 @@ details:hover {
     flex-direction: column;
 }
 
-.weight {
+.selected-items,
+.weight,
+.dimensions {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -128,13 +130,6 @@ details:hover {
     text-align: center;
 }
 
-.dimensions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
 .dimensions input {
     width: 20px;
     height: 20px;
@@ -145,4 +140,8 @@ details:hover {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+#selected {
+    background-color: lightblue;
 }
