@@ -142,6 +142,7 @@ details:hover {
     gap: 20px;
 }
 
-#selected {
+#selected-item,
+#selected-container {
     background-color: lightblue;
 }
