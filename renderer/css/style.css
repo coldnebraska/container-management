@@ -146,3 +146,7 @@ details:hover {
 #selected-container {
     background-color: lightblue;
 }
+
+.search input {
+    margin-right: 10px;
+}
