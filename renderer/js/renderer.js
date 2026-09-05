@@ -13,6 +13,7 @@ button.addEventListener('click', () => {
 })
 
 // dummy data for testing
+// const dummyData = []
 const dummyData = [
     {
         container: "blue",
@@ -306,7 +307,7 @@ function selectContainer() {
 function populateItems(items) {
     const itemList = document.getElementById('item-list')
 
-    items.forEach(item => {
+    items?.forEach(item => {
         if (item.container == selectedContainer.className) {
             const itemContainer = document.createElement('div')
             itemContainer.className = 'item'
@@ -335,7 +336,7 @@ function getContainerCount() {
     const redCount = document.getElementById('red-count')
     const happyCount = document.getElementById('happy-count')
 
-    dummyData.forEach(item => {
+    dummyData?.forEach(item => {
         if (item.container === 'blue') {
             blueCount.innerHTML = parseInt(blueCount.innerHTML) + 1 || 1
         } else if (item.container === 'green') {
@@ -361,11 +362,19 @@ for (i = 0; i < itemList.length; i++) {
 
 items.forEach(item => {
     item.addEventListener('change', () => {
-        if (!selectedItems.includes(item)) {
-            selectedItems.push(item)
+        if (!selectedItems.find(selectedItem => selectedItem.item === item)) {
             item.id = "selected-item"
+            const [pounds, ounces] = updateWeight(null, null)
+            selectedItems.push({ item, pounds, ounces })
         } else {
-            selectedItems = selectedItems.filter(filterItem => filterItem !== item)
+            selectedItems = selectedItems.filter(filterItem => {
+                // Update weight for removed item
+                if (filterItem.item === item) {
+                    updateWeight(filterItem.pounds, filterItem.ounces)
+                }
+
+                return filterItem.item !== item
+            })
             item.id = ''
         }
 
@@ -373,3 +382,30 @@ items.forEach(item => {
     })
 })
 
+
+// Update weight
+function updateWeight(pounds, ounces) {
+    const poundInput = document.getElementById('pound-input')
+    const ounceInput = document.getElementById('ounce-input')
+
+    if (pounds === null && ounces === null) {
+        // Randomly generate lbs between 1 and 9
+        pounds = Math.floor(Math.random() * 9) + 1
+        // Randomly generate oz between 0 and 15.9
+        ounces = (Math.random() * 15.9).toFixed(1)
+
+        if (poundInput.value == 0 && ounceInput.value == 0) {
+            poundInput.value = pounds
+            ounceInput.value = ounces
+        } else {
+            poundInput.value = parseInt(poundInput.value) + pounds
+            ounceInput.value = (parseFloat(ounceInput.value) + parseFloat(ounces)).toFixed(1)
+        }
+    } else {
+        poundInput.value = poundInput.value - pounds
+        ounceInput.value = (parseFloat(ounceInput.value) - parseFloat(ounces)).toFixed(1)
+    }
+
+
+    return [pounds, ounces]
+}
