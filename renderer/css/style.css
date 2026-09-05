@@ -139,8 +139,21 @@ details:hover {
     gap: 10px;
 }
 
+.weight .weight-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pound,
+.ounce {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .weight input {
-    width: 20px;
+    width: 25px;
     height: 20px;
     text-align: center;
 }

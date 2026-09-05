@@ -399,11 +399,22 @@ function updateWeight(pounds, ounces) {
             ounceInput.value = ounces
         } else {
             poundInput.value = parseInt(poundInput.value) + pounds
-            ounceInput.value = (parseFloat(ounceInput.value) + parseFloat(ounces)).toFixed(1)
+            if (parseFloat(ounceInput.value) + parseFloat(ounces) >= 16) {
+                poundInput.value = parseInt(poundInput.value) + 1
+                ounceInput.value = (parseFloat(ounceInput.value) + parseFloat(ounces) - 16).toFixed(1)
+            } else {
+                ounceInput.value = (parseFloat(ounceInput.value) + parseFloat(ounces)).toFixed(1)
+            }
         }
     } else {
         poundInput.value = poundInput.value - pounds
-        ounceInput.value = (parseFloat(ounceInput.value) - parseFloat(ounces)).toFixed(1)
+        
+        if (ounceInput.value - parseFloat(ounces).toFixed(1) < 0) {
+            ounceInput.value = 16 + Math.round((parseFloat(ounceInput.value) - parseFloat(ounces).toFixed(1)) * 10) / 10
+            poundInput.value = poundInput.value - 1
+        } else {
+            ounceInput.value = (parseFloat(ounceInput.value) - parseFloat(ounces)).toFixed(1)
+        }
     }
 
 
