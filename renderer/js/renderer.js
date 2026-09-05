@@ -328,7 +328,28 @@ function clearItems() {
     }
 }
 
+// Gets count for each container
+function getContainerCount() {
+    const blueCount = document.getElementById('blue-count')
+    const greenCount = document.getElementById('green-count')
+    const redCount = document.getElementById('red-count')
+    const happyCount = document.getElementById('happy-count')
+
+    dummyData.forEach(item => {
+        if (item.container === 'blue') {
+            blueCount.innerHTML = parseInt(blueCount.innerHTML) + 1 || 1
+        } else if (item.container === 'green') {
+            greenCount.innerHTML = parseInt(greenCount.innerHTML) + 1 || 1
+        } else if (item.container === 'red') {
+            redCount.innerHTML = parseInt(redCount.innerHTML) + 1 || 1
+        } else if (item.container === 'happy') {
+            happyCount.innerHTML = parseInt(happyCount.innerHTML) + 1 || 1
+        }
+    })
+}
+
 selectContainer()
+getContainerCount()
 
 // item selection
 const itemList = document.getElementsByClassName('item')

@@ -22,14 +22,17 @@
                 <div class="collapsible">
                     <div class="blue" id="selected-container">
                         <p class="destination-container">Blue</p>
+                        <p id="container-count">(<span id="blue-count">0</span> items)</p>
                     </div>
         
                     <div class="green">
                         <p class="destination-container">Green</p>
+                        <p id="container-count">(<span id="green-count">0</span> items)</p>
                     </div>
         
                     <div class="red">
                         <p class="destination-container">Red</p>
+                        <p id="container-count">(<span id="red-count">0</span> items)</p>
                     </div>
                 </div>
             </details>
@@ -37,8 +40,9 @@
             <details open class="other">
                 <summary>Happy</summary>
     
-                <div class="happy-returns">
+                <div class="happy">
                     <p class="destination-container">Happy</p>
+                    <p id="container-count">(<span id="happy-count">0</span> items)</p>
                 </div>
             </details>
         </div>
@@ -51,6 +55,7 @@
                 <button>Select</button>
             </div>
     
+            <!-- add sorting headers -->
             <div id="item-list"></div>
         </div>
     </div>
