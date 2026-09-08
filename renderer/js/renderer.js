@@ -1,6 +1,8 @@
 let containerItems = []
 let selectedItems = []
 let selectedContainer = document.getElementById('selected-container')
+const poundInput = document.getElementById('pound-input')
+const ounceInput = document.getElementById('ounce-input')
 
 
 // override dimensions
@@ -10,6 +12,38 @@ const fieldset = document.getElementById('dimension-inputs')
 button.addEventListener('click', () => {
     fieldset.disabled = false
     button.disabled = true
+})
+
+// dimension inputs
+const lengthInput = document.getElementById('length-input')
+const widthInput = document.getElementById('width-input')
+const heightInput = document.getElementById('height-input')
+const dimensions = {
+    length: 18,
+    width: 18,
+    height: 18
+}
+
+lengthInput.addEventListener('input', () => {
+    dimensions.length = parseInt(lengthInput.value) || 18
+})
+
+widthInput.addEventListener('input', () => {
+    dimensions.width = parseInt(widthInput.value) || 18
+})
+
+heightInput.addEventListener('input', () => {
+    dimensions.height = parseInt(heightInput.value) || 18
+})
+
+// closeout the container
+const closeOutButton = document.getElementById('closeout-button')
+
+closeOutButton.addEventListener('click', () => {
+    console.log("Dimensions:", dimensions)
+    console.log("Selected Container:", selectedContainer.className)
+    console.log("Selected Items:", selectedItems)
+    console.log("Total Weight:", poundInput.value + " lbs " + ounceInput.value + " oz")
 })
 
 // dummy data for testing
@@ -422,9 +456,6 @@ function selectItemByRRMA() {
 }
 
 function addWeight(pounds, ounces) {
-    const poundInput = document.getElementById('pound-input')
-    const ounceInput = document.getElementById('ounce-input')
-
     if (poundInput.value == 0 && ounceInput.value == 0) {
         poundInput.value = pounds
         ounceInput.value = ounces
