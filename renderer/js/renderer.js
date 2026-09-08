@@ -296,6 +296,7 @@ function selectContainer() {
             container.parentElement.id = 'selected-container'
 
             clearItems()
+            clearWeight()
             populateItems(dummyData)
         })
     })
@@ -370,7 +371,12 @@ function countSelectedItems() {
 function selectItem(item) {
     item.id = "selected-item"
     item.firstElementChild.checked = true
-    const [pounds, ounces] = updateWeight(null, null)
+
+    // Randomly generate lbs between 1 and 9
+    pounds = Math.floor(Math.random() * 9) + 1
+    // Randomly generate oz between 0 and 15.9
+    ounces = (Math.random() * 15.9).toFixed(1)
+    addWeight(pounds, ounces)
     selectedItems.push({ item, pounds, ounces })
     countSelectedItems()
 }
@@ -380,7 +386,7 @@ function deselectItem(item) {
     selectedItems = selectedItems.filter(filterItem => {
         // Update weight for removed item
         if (filterItem.item === item) {
-            updateWeight(filterItem.pounds, filterItem.ounces)
+            subtractWeight(filterItem.pounds, filterItem.ounces)
         }
         
         return filterItem.item !== item
@@ -415,21 +421,14 @@ function selectItemByRRMA() {
     })
 }
 
-// Update weight
-function updateWeight(pounds, ounces) {
+function addWeight(pounds, ounces) {
     const poundInput = document.getElementById('pound-input')
     const ounceInput = document.getElementById('ounce-input')
-    
-    if (pounds === null && ounces === null) {
-        // Randomly generate lbs between 1 and 9
-        pounds = Math.floor(Math.random() * 9) + 1
-        // Randomly generate oz between 0 and 15.9
-        ounces = (Math.random() * 15.9).toFixed(1)
-        
-        if (poundInput.value == 0 && ounceInput.value == 0) {
-            poundInput.value = pounds
-            ounceInput.value = ounces
-        } else {
+
+    if (poundInput.value == 0 && ounceInput.value == 0) {
+        poundInput.value = pounds
+        ounceInput.value = ounces
+    } else {
             poundInput.value = parseInt(poundInput.value) + pounds
             if (parseFloat(ounceInput.value) + parseFloat(ounces) >= 16) {
                 poundInput.value = parseInt(poundInput.value) + 1
@@ -437,19 +436,31 @@ function updateWeight(pounds, ounces) {
             } else {
                 ounceInput.value = (parseFloat(ounceInput.value) + parseFloat(ounces)).toFixed(1)
             }
-        }
-    } else {
-        poundInput.value = poundInput.value - pounds
-        
-        if (ounceInput.value - parseFloat(ounces).toFixed(1) < 0) {
-            ounceInput.value = 16 + Math.round((parseFloat(ounceInput.value) - parseFloat(ounces).toFixed(1)) * 10) / 10
-            poundInput.value = poundInput.value - 1
-        } else {
-            ounceInput.value = (parseFloat(ounceInput.value) - parseFloat(ounces)).toFixed(1)
-        }
     }
-    
+
     return [pounds, ounces]
+}
+
+function subtractWeight(pounds, ounces) {
+    const poundInput = document.getElementById('pound-input')
+    const ounceInput = document.getElementById('ounce-input')
+
+    poundInput.value = poundInput.value - pounds
+
+    if (ounceInput.value - parseFloat(ounces).toFixed(1) < 0) {
+        ounceInput.value = 16 + Math.round((parseFloat(ounceInput.value) - parseFloat(ounces).toFixed(1)) * 10) / 10
+        poundInput.value = poundInput.value - 1
+    } else {
+        ounceInput.value = (parseFloat(ounceInput.value) - parseFloat(ounces)).toFixed(1)
+    }
+}
+
+function clearWeight() {
+    const poundInput = document.getElementById('pound-input')
+    const ounceInput = document.getElementById('ounce-input')
+
+    poundInput.value = 0
+    ounceInput.value = 0
 }
 
 selectContainer()
