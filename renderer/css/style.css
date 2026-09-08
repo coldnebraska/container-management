@@ -33,7 +33,7 @@ details:hover {
 }
 
 .container-header,
-.container .item-container .search {
+.container .item-container .search-form {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
@@ -80,7 +80,7 @@ details:hover {
     flex-direction: column;
 }
 
-.item-container .search input {
+.item-container .search-form input {
     width: 40%;
 }
 
@@ -175,6 +175,6 @@ details:hover {
     background-color: lightblue;
 }
 
-.search input {
+.search-form input {
     margin-right: 10px;
 }

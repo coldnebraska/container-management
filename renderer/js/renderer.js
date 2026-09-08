@@ -1,4 +1,4 @@
-let items = []
+let containerItems = []
 let selectedItems = []
 let selectedContainer = document.getElementById('selected-container')
 
@@ -289,7 +289,7 @@ function selectContainer() {
                 }
                 
                 selectedItems = []
-                count.innerHTML = selectedItems.length
+                countSelectedItems()
             }
 
             selectedContainer = container.parentElement
@@ -317,7 +317,18 @@ function populateItems(items) {
                 <p>${item.date}</p>
             `
             itemList.appendChild(itemContainer)
+            containerItems.push(itemContainer)
         }
+    })
+    
+    itemList.childNodes.forEach(item => {
+        item.addEventListener('change', () => {
+            if (!selectedItems.find(selectedItem => selectedItem.item === item)) {
+                selectItem(item)
+            } else {
+                deselectItem(item)
+            }
+        })
     })
 }
 
@@ -351,37 +362,62 @@ function getContainerCount() {
 
 selectContainer()
 getContainerCount()
+selectItemByRRMA()
 
-// item selection
-const itemList = document.getElementsByClassName('item')
-const count = document.getElementById('item-count')
-
-for (i = 0; i < itemList.length; i++) {
-    items.push(itemList[i])
+// count selected items
+function countSelectedItems() {
+    const count = document.getElementById('item-count')
+    count.innerHTML = selectedItems.length
 }
 
-items.forEach(item => {
-    item.addEventListener('change', () => {
-        if (!selectedItems.find(selectedItem => selectedItem.item === item)) {
-            item.id = "selected-item"
-            const [pounds, ounces] = updateWeight(null, null)
-            selectedItems.push({ item, pounds, ounces })
-        } else {
-            selectedItems = selectedItems.filter(filterItem => {
-                // Update weight for removed item
-                if (filterItem.item === item) {
-                    updateWeight(filterItem.pounds, filterItem.ounces)
-                }
+// Select item
+function selectItem(item) {
+    item.id = "selected-item"
+    item.firstElementChild.checked = true
+    const [pounds, ounces] = updateWeight(null, null)
+    selectedItems.push({ item, pounds, ounces })
+    countSelectedItems()
+}
 
-                return filterItem.item !== item
-            })
-            item.id = ''
+// Deselect item
+function deselectItem(item) {
+    selectedItems = selectedItems.filter(filterItem => {
+        // Update weight for removed item
+        if (filterItem.item === item) {
+            updateWeight(filterItem.pounds, filterItem.ounces)
         }
 
-        count.innerHTML = selectedItems.length
+        return filterItem.item !== item
     })
-})
 
+    item.id = ''
+    item.firstElementChild.checked = false
+    countSelectedItems()
+}
+
+// Manual selection of items based on typed RRMA (scanning)
+function selectItemByRRMA() {
+    const searchForm = document.getElementById('search-form')
+    const rrmaInput = document.getElementById('rrma-input')
+    let rrmaValue = ''
+
+    searchForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        rrmaValue = rrmaInput.value.trim()
+        const searchSelected = selectedItems.find(selectedItem => selectedItem.item.childNodes[3].innerHTML === rrmaValue)
+        const searchContainer = containerItems.find(item => item.childNodes[3].innerHTML === rrmaValue)
+
+        if (searchSelected) {
+            deselectItem(searchSelected.item)
+        } else if (!searchSelected && searchContainer) {
+            selectItem(searchContainer)
+        } else {
+            // selectError()
+        }
+
+        rrmaInput.value = ''
+    })
+}
 
 // Update weight
 function updateWeight(pounds, ounces) {
@@ -416,7 +452,6 @@ function updateWeight(pounds, ounces) {
             ounceInput.value = (parseFloat(ounceInput.value) - parseFloat(ounces)).toFixed(1)
         }
     }
-
 
     return [pounds, ounces]
 }
