@@ -283,9 +283,9 @@ function selectContainer() {
             }
             
             if (selectedContainer != container) {
-                for (i = 0; i < itemList.length; i++) {
-                    itemList[i].firstElementChild.checked = false
-                    itemList[i].id = ''
+                for (i = 0; i < containerItems.length; i++) {
+                    containerItems[i].firstElementChild.checked = false
+                    containerItems[i].id = ''
                 }
                 
                 selectedItems = []
@@ -360,10 +360,6 @@ function getContainerCount() {
     })
 }
 
-selectContainer()
-getContainerCount()
-selectItemByRRMA()
-
 // count selected items
 function countSelectedItems() {
     const count = document.getElementById('item-count')
@@ -386,10 +382,10 @@ function deselectItem(item) {
         if (filterItem.item === item) {
             updateWeight(filterItem.pounds, filterItem.ounces)
         }
-
+        
         return filterItem.item !== item
     })
-
+    
     item.id = ''
     item.firstElementChild.checked = false
     countSelectedItems()
@@ -400,13 +396,13 @@ function selectItemByRRMA() {
     const searchForm = document.getElementById('search-form')
     const rrmaInput = document.getElementById('rrma-input')
     let rrmaValue = ''
-
+    
     searchForm.addEventListener('submit', (e) => {
         e.preventDefault()
         rrmaValue = rrmaInput.value.trim()
         const searchSelected = selectedItems.find(selectedItem => selectedItem.item.childNodes[3].innerHTML === rrmaValue)
         const searchContainer = containerItems.find(item => item.childNodes[3].innerHTML === rrmaValue)
-
+        
         if (searchSelected) {
             deselectItem(searchSelected.item)
         } else if (!searchSelected && searchContainer) {
@@ -414,7 +410,7 @@ function selectItemByRRMA() {
         } else {
             // selectError()
         }
-
+        
         rrmaInput.value = ''
     })
 }
@@ -423,13 +419,13 @@ function selectItemByRRMA() {
 function updateWeight(pounds, ounces) {
     const poundInput = document.getElementById('pound-input')
     const ounceInput = document.getElementById('ounce-input')
-
+    
     if (pounds === null && ounces === null) {
         // Randomly generate lbs between 1 and 9
         pounds = Math.floor(Math.random() * 9) + 1
         // Randomly generate oz between 0 and 15.9
         ounces = (Math.random() * 15.9).toFixed(1)
-
+        
         if (poundInput.value == 0 && ounceInput.value == 0) {
             poundInput.value = pounds
             ounceInput.value = ounces
@@ -452,6 +448,10 @@ function updateWeight(pounds, ounces) {
             ounceInput.value = (parseFloat(ounceInput.value) - parseFloat(ounces)).toFixed(1)
         }
     }
-
+    
     return [pounds, ounces]
 }
+
+selectContainer()
+getContainerCount()
+selectItemByRRMA()
