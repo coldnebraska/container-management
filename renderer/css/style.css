@@ -175,6 +175,10 @@ details:hover {
     background-color: lightblue;
 }
 
+#error-item {
+    background-color: lightcoral;
+}
+
 .search-form input {
     margin-right: 10px;
 }

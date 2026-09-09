@@ -5,7 +5,7 @@ const poundInput = document.getElementById('pound-input')
 const ounceInput = document.getElementById('ounce-input')
 
 
-// override dimensions
+// override dimensions button
 const button = document.getElementById('override-dimensions')
 const fieldset = document.getElementById('dimension-inputs')
 
@@ -40,10 +40,15 @@ heightInput.addEventListener('input', () => {
 const closeOutButton = document.getElementById('closeout-button')
 
 closeOutButton.addEventListener('click', () => {
-    console.log("Dimensions:", dimensions)
-    console.log("Selected Container:", selectedContainer.className)
-    console.log("Selected Items:", selectedItems)
-    console.log("Total Weight:", poundInput.value + " lbs " + ounceInput.value + " oz")
+    if (containerItems.find(item => item.id === 'error-item')) {
+        alert("Please remove any items with errors before closing out the container.")
+    } else {
+        console.log("Selected Container:", selectedContainer.className)
+        console.log("Dimensions:", dimensions)
+        console.log("Total Weight:", poundInput.value + " lbs " + ounceInput.value + " oz")
+        console.log("Total Items:", selectedItems.length)
+        console.log("Selected Items:", selectedItems)
+    }
 })
 
 // dummy data for testing
@@ -431,6 +436,24 @@ function deselectItem(item) {
     countSelectedItems()
 }
 
+// Item selection error
+function selectError(rrmaValue) {
+    if (!containerItems.find(item => item.childNodes[3].innerHTML === rrmaValue)) {
+        const itemContainer = document.createElement('div')
+        itemContainer.className = 'item'
+        // update input to display error symbol (!)
+        itemContainer.innerHTML = `
+            <input type="checkbox">
+            <p id="rrma">${rrmaValue}</p>
+            <p></p>
+        `
+        itemContainer.id = 'error-item'
+        const itemList = document.getElementById('item-list')
+        itemList.prepend(itemContainer)
+        containerItems.unshift(itemContainer)
+    }
+}
+
 // Manual selection of items based on typed RRMA (scanning)
 function selectItemByRRMA() {
     const searchForm = document.getElementById('search-form')
@@ -448,7 +471,7 @@ function selectItemByRRMA() {
         } else if (!searchSelected && searchContainer) {
             selectItem(searchContainer)
         } else {
-            // selectError()
+            selectError(rrmaValue)
         }
         
         rrmaInput.value = ''
