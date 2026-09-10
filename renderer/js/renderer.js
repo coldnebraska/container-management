@@ -1,17 +1,18 @@
 let containerItems = []
 let selectedItems = []
+let excludedItems = []
 let selectedContainer = document.getElementById('selected-container')
 const poundInput = document.getElementById('pound-input')
 const ounceInput = document.getElementById('ounce-input')
 
 
 // override dimensions button
-const button = document.getElementById('override-dimensions')
+const overrideButton = document.getElementById('override-dimensions')
 const fieldset = document.getElementById('dimension-inputs')
 
-button.addEventListener('click', () => {
+overrideButton.addEventListener('click', () => {
     fieldset.disabled = false
-    button.disabled = true
+    overrideButton.disabled = true
 })
 
 // dimension inputs
@@ -352,23 +353,13 @@ function populateItems(items) {
             const itemContainer = document.createElement('div')
             itemContainer.className = 'item'
             itemContainer.innerHTML = `
-                <input type="checkbox">
+                <p></p>
                 <p id="rrma">${item.rrma}</p>
                 <p>${item.date}</p>
             `
             itemList.appendChild(itemContainer)
             containerItems.push(itemContainer)
         }
-    })
-    
-    itemList.childNodes.forEach(item => {
-        item.addEventListener('change', () => {
-            if (!selectedItems.find(selectedItem => selectedItem.item === item)) {
-                selectItem(item)
-            } else {
-                deselectItem(item)
-            }
-        })
     })
 }
 
@@ -409,7 +400,16 @@ function countSelectedItems() {
 // Select item
 function selectItem(item) {
     item.id = "selected-item"
-    item.firstElementChild.checked = true
+    const iconElement = document.createElement('div')
+    iconElement.style.display = 'flex'
+    iconElement.style.alignItems = 'center'
+    iconElement.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(221, 221, 221)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </svg>
+    `
+    item.firstElementChild.replaceWith(iconElement)
+    // item.firstElementChild.checked = true
 
     // Randomly generate lbs between 1 and 9
     pounds = Math.floor(Math.random() * 9) + 1
@@ -421,6 +421,7 @@ function selectItem(item) {
 }
 
 // Deselect item
+// add functionality for removed items being "excluded" for notification purposes
 function deselectItem(item) {
     selectedItems = selectedItems.filter(filterItem => {
         // Update weight for removed item
@@ -428,11 +429,20 @@ function deselectItem(item) {
             subtractWeight(filterItem.pounds, filterItem.ounces)
         }
         
+        excludedItems.push(filterItem.item)
         return filterItem.item !== item
     })
     
     item.id = ''
-    item.firstElementChild.checked = false
+    const iconElement = document.createElement('div')
+    iconElement.style.display = 'flex'
+    iconElement.style.alignItems = 'center'
+    iconElement.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+        </svg>
+    `
+    item.firstElementChild.replaceWith(iconElement)
     countSelectedItems()
 }
 
@@ -443,7 +453,11 @@ function selectError(rrmaValue) {
         itemContainer.className = 'item'
         // update input to display error symbol (!)
         itemContainer.innerHTML = `
-            <input type="checkbox">
+            <div style="display: flex; alignItems: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+                </svg>
+            </div>
             <p id="rrma">${rrmaValue}</p>
             <p></p>
         `
