@@ -28,10 +28,6 @@ details:hover {
     flex: 1;
 }
 
-.container:nth-child(odd) {
-    margin-top: -2px;
-}
-
 .container:last-child {
     border: 0;
 }
@@ -44,6 +40,7 @@ details:hover {
     padding: 10px;
     border-bottom: 1px solid rgb(85, 85, 85);
     height: 25px;
+    min-height: 25px;
 }
 
 .container-header p {

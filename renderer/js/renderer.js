@@ -478,7 +478,7 @@ function deselectError(rrmaValue) {
     itemList.childNodes.forEach((element, index) => {
         if (element.children[1].innerHTML === rrmaValue) {
             itemList.removeChild(itemList.children[index])
-            errorItems.filter(item  => item === rrmaValue)
+            errorItems = errorItems.filter(item => item !== rrmaValue)
         }
     })
 }
