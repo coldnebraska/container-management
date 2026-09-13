@@ -19,14 +19,14 @@ function createMainWindow() {
     mainWindow.loadFile(path.join(__dirname, './renderer/index.html'))
 }
 
-function createAboutWindow() {
+function createDropOffWindow() {
     const aboutWindow = new BrowserWindow({
-        title: 'About Container Manager',
-        width: isDev ? 1250 : 1000,
+        title: 'Drop Off',
+        width: 650,
         height: 650
     })
 
-    aboutWindow.loadFile(path.join(__dirname, './renderer/about.html'))
+    aboutWindow.loadFile(path.join(__dirname, './renderer/dropoff.html'))
 }
 
 app.whenReady().then(() => {
@@ -43,31 +43,36 @@ app.whenReady().then(() => {
     })
 })
 
-// Menu template ---- blank
+// Menu template
 const menu = [
-    // ...(isMac ? [{
-    //     label: app.name,
-    //     submenu: [
-    //         {
-    //             label: 'About',
-    //             click: createAboutWindow
-    //         }
-    //     ]
-    // }] : []),
-    // {
-    //     role: 'fileMenu'
-    // },
-    // ...(!isMac ? [
-    //     {
-    //         label: 'Help',
-    //         submenu: [
-    //             {
-    //                 label: 'About',
-    //                 click: createAboutWindow
-    //             }
-    //         ]
-    //     }
-    // ] : [])
+    ...(isMac ? [
+        {
+            label: app.name,
+            submenu: [
+                {
+                    label: 'Drop Off',
+                    click: createDropOffWindow,
+                    accelerator: 'f7'
+                }
+            ]
+        }
+    ] : []),
+    ...(!isMac ? [
+        {
+            label: 'File',
+            submenu: [
+                {
+                    label: 'Drop Off',
+                    click: createDropOffWindow,
+                    accelerator: 'f7'
+                },
+                {
+                    label: 'Close Window',
+                    click: () => app.quit()
+                }
+            ]
+        }
+    ] : [])
 ]
 
 app.on('window-all-closed', () => {
