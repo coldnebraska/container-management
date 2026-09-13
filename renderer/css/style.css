@@ -28,6 +28,10 @@ details:hover {
     flex: 1;
 }
 
+.container:nth-child(odd) {
+    margin-top: -2px;
+}
+
 .container:last-child {
     border: 0;
 }
@@ -78,15 +82,18 @@ details:hover {
 .item-container {
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
 .item-container .search-form input {
     width: 40%;
 }
 
-.item-list {
+#item-list {
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+    padding-bottom: 5px;
 }
 
 .item {

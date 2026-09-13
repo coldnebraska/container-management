@@ -1,10 +1,10 @@
 let containerItems = []
 let selectedItems = []
 let excludedItems = []
+let errorItems = []
 let selectedContainer = document.getElementById('selected-container')
 const poundInput = document.getElementById('pound-input')
 const ounceInput = document.getElementById('ounce-input')
-
 
 // override dimensions button
 const overrideButton = document.getElementById('override-dimensions')
@@ -43,6 +43,13 @@ const closeOutButton = document.getElementById('closeout-button')
 closeOutButton.addEventListener('click', () => {
     if (containerItems.find(item => item.id === 'error-item')) {
         alert("Please remove any items with errors before closing out the container.")
+    } else if (excludedItems.length > 0) {
+        const confirmCloseout = confirm("Items have been excluded, are you sure you wish to closeout?")
+
+        if (confirmCloseout) {
+            console.log('closing out')
+            // closeout()
+        }
     } else {
         console.log("Selected Container:", selectedContainer.className)
         console.log("Dimensions:", dimensions)
@@ -404,7 +411,7 @@ function selectItem(item) {
     iconElement.style.display = 'flex'
     iconElement.style.alignItems = 'center'
     iconElement.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(221, 221, 221)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
         </svg>
     `
@@ -421,7 +428,6 @@ function selectItem(item) {
 }
 
 // Deselect item
-// add functionality for removed items being "excluded" for notification purposes
 function deselectItem(item) {
     selectedItems = selectedItems.filter(filterItem => {
         // Update weight for removed item
@@ -448,24 +454,33 @@ function deselectItem(item) {
 
 // Item selection error
 function selectError(rrmaValue) {
-    if (!containerItems.find(item => item.childNodes[3].innerHTML === rrmaValue)) {
-        const itemContainer = document.createElement('div')
-        itemContainer.className = 'item'
-        // update input to display error symbol (!)
-        itemContainer.innerHTML = `
-            <div style="display: flex; alignItems: center;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
-                </svg>
-            </div>
-            <p id="rrma">${rrmaValue}</p>
-            <p></p>
-        `
-        itemContainer.id = 'error-item'
-        const itemList = document.getElementById('item-list')
-        itemList.prepend(itemContainer)
-        containerItems.unshift(itemContainer)
-    }
+    const itemList = document.getElementById('item-list')
+    const itemContainer = document.createElement('div')
+
+    itemContainer.className = 'item'
+    itemContainer.id = 'error-item'
+    itemContainer.innerHTML = `
+        <div style="display: flex; alignItems: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+            </svg>
+        </div>
+        <p id="rrma">${rrmaValue}</p>
+        <p></p>
+    `
+    
+    errorItems.push(rrmaValue)
+    itemList.prepend(itemContainer)
+}
+
+function deselectError(rrmaValue) {
+    const itemList = document.getElementById('item-list')
+    itemList.childNodes.forEach((element, index) => {
+        if (element.children[1].innerHTML === rrmaValue) {
+            itemList.removeChild(itemList.children[index])
+            errorItems.filter(item  => item === rrmaValue)
+        }
+    })
 }
 
 // Manual selection of items based on typed RRMA (scanning)
@@ -479,7 +494,13 @@ function selectItemByRRMA() {
         rrmaValue = rrmaInput.value.trim()
         const searchSelected = selectedItems.find(selectedItem => selectedItem.item.childNodes[3].innerHTML === rrmaValue)
         const searchContainer = containerItems.find(item => item.childNodes[3].innerHTML === rrmaValue)
-        
+
+        if (errorItems.includes(rrmaValue)) {
+            deselectError(rrmaValue)
+            rrmaInput.value = ''
+            return
+        }
+
         if (searchSelected) {
             deselectItem(searchSelected.item)
         } else if (!searchSelected && searchContainer) {
