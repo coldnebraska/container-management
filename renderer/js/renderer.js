@@ -65,252 +65,452 @@ const dummyData = [
     {
         container: "blue",
         rrma: "DHoJW4nRRMA",
-        date: "10/19/2025"
+        date_created: new Date("10/19/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DzZ0CFsRRMA",
-        date: "8/14/2026"
+        date_created: new Date("8/14/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "Dohtf8ORRMA",
-        date: "5/21/2026"
+        date_created: new Date("5/21/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "Dd9GJBdRRMA",
-        date: "9/12/2025"
+        date_created: new Date("9/12/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DZ9NSWDRRMA",
-        date: "8/7/2026"
+        date_created: new Date("8/7/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DmkQ0zdRRMA",
-        date: "12/24/2025"
+        date_created: new Date("12/24/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "D2Yx8zgRRMA",
-        date: "8/21/2026"
+        date_created: new Date("8/21/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "D8hwk2VRRMA",
-        date: "4/21/2026"
+        date_created: new Date("4/21/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DZxHrTyRRMA",
-        date: "11/23/2025"
+        date_created: new Date("11/23/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "D45iLBBRRMA",
-        date: "9/15/2025"
+        date_created: new Date("9/15/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "D2oachFRRMA",
-        date: "10/16/2025"
+        date_created: new Date("10/16/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "D3SokHfRRMA",
-        date: "12/28/2025"
+        date_created: new Date("12/28/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "Dan785zRRMA",
-        date: "1/8/2026"
+        date_created: new Date("1/8/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "D5nNWCXRRMA",
-        date: "3/15/2026"
+        date_created: new Date("3/15/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "Di88D1yRRMA",
-        date: "9/9/2025"
+        date_created: new Date("9/9/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DswGl5uRRMA",
-        date: "11/2/2025"
+        date_created: new Date("11/2/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DQTtdrmRRMA",
-        date: "2/10/2026"
+        date_created: new Date("2/10/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DA0h6KARRMA",
-        date: "5/22/2026"
+        date_created: new Date("5/22/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DDhbARLRRMA",
-        date: "7/8/2026"
+        date_created: new Date("7/8/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DjUJsfnRRMA",
-        date: "5/29/2026"
+        date_created: new Date("5/29/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DjycSwFRRMA",
-        date: "10/8/2025"
+        date_created: new Date("10/8/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "D5yVdHYRRMA",
-        date: "1/5/2026"
+        date_created: new Date("1/5/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DHOIQJPRRMA",
-        date: "9/20/2025"
+        date_created: new Date("9/20/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DHdf9q8RRMA",
-        date: "6/18/2026"
+        date_created: new Date("6/18/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "Dg153KcRRMA",
-        date: "10/18/2025"
+        date_created: new Date("10/18/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "D0oepciRRMA",
-        date: "9/22/2025"
+        date_created: new Date("9/22/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DnUQHoRRRMA",
-        date: "10/8/2025"
+        date_created: new Date("10/8/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DSbePLuRRMA",
-        date: "2/4/2026"
+        date_created: new Date("2/4/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DvyVwSqRRMA",
-        date: "5/26/2026"
+        date_created: new Date("5/26/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "D58AIcIRRMA",
-        date: "6/7/2026"
+        date_created: new Date("6/7/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "D8gaVreRRMA",
-        date: "10/11/2025"
+        date_created: new Date("10/11/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DaFaWytRRMA",
-        date: "3/25/2026"
+        date_created: new Date("3/25/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "Du2uWVMRRMA",
-        date: "9/29/2025"
+        date_created: new Date("9/29/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "Do2Bo0ARRMA",
-        date: "7/3/2026"
+        date_created: new Date("7/3/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "Dr6TcRMRRMA",
-        date: "2/12/2026"
+        date_created: new Date("2/12/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DtNwqfyRRMA",
-        date: "3/27/2026"
+        date_created: new Date("3/27/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DEn5IHFRRMA",
-        date: "8/28/2026"
+        date_created: new Date("8/28/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DT5tvVVRRMA",
-        date: "12/6/2025"
+        date_created: new Date("12/6/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DwErcuwRRMA",
-        date: "8/11/2026"
+        date_created: new Date("8/11/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DWod1OjRRMA",
-        date: "8/23/2026"
+        date_created: new Date("8/23/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DyGYgErRRMA",
-        date: "10/8/2025"
+        date_created: new Date("10/8/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DE57zxLRRMA",
-        date: "2/19/2026"
+        date_created: new Date("2/19/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DRU5exfRRMA",
-        date: "10/8/2025"
+        date_created: new Date("10/8/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DT6pJqlRRMA",
-        date: "5/19/2026"
+        date_created: new Date("5/19/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "blue",
         rrma: "DUihM7hRRMA",
-        date: "2/17/2026"
+        date_created: new Date("2/17/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "DcBI7ljRRMA",
-        date: "3/30/2026"
+        date_created: new Date("3/30/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DIuWmojRRMA",
-        date: "8/30/2026"
+        date_created: new Date("8/30/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "DRr66QBRRMA",
-        date: "9/11/2025"
+        date_created: new Date("9/11/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "green",
         rrma: "Date75sRRMA",
-        date: "12/24/2025"
+        date_created: new Date("12/24/2025").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }, 
     {
         container: "red",
         rrma: "D8CJtwvRRMA",
-        date: "3/26/2026"
+        date_created: new Date("3/26/2026").toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        })
     }
 ]
 
@@ -362,7 +562,7 @@ function populateItems(items) {
             itemContainer.innerHTML = `
                 <p></p>
                 <p id="rrma">${item.rrma}</p>
-                <p>${item.date}</p>
+                <p>${item.date_created}</p>
             `
             itemList.appendChild(itemContainer)
             containerItems.push(itemContainer)
@@ -384,6 +584,10 @@ function getContainerCount() {
     const greenCount = document.getElementById('green-count')
     const redCount = document.getElementById('red-count')
     const happyCount = document.getElementById('happy-count')
+    blueCount.innerHTML = 0
+    greenCount.innerHTML = 0
+    redCount.innerHTML = 0
+    happyCount.innerHTML = 0
 
     dummyData?.forEach(item => {
         if (item.container === 'blue') {
@@ -557,11 +761,10 @@ getContainerCount()
 selectItemByRRMA()
 
 // access rrma submission from submission window
+// format validation done on submission
+// (needs duplicate rrma validation)
 window.electronAPI.onRRMASubmission((value) => {
     console.log(value)
-    if (value.rrma.length === 11 && value.rrma.includes('RRMA')) {
-        console.log('valid rrma')
-    } else {
-        console.log('invalid rrma')
-    }
+    dummyData.push(value)
+    getContainerCount()
 })
