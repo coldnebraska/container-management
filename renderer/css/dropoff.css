@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(32, 91, 219);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    margin: auto;
+    color: white;
+}
+
+#dropoff-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#dropoff-form .input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
