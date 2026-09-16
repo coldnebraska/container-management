@@ -44,7 +44,15 @@ function createDropOffWindow() {
 
 // Inter-Process Communication
 function submitRRMA(event, rrmaInput) {
+    // sends data to main renderer
     mainWindow.webContents.send('rrma-input', rrmaInput)
+
+    // checks the data was sent and then closes dropoff window
+    const webContents = event.sender
+    const win = BrowserWindow.fromWebContents(webContents)
+    if (win) {
+        win.close()
+    }
 }
 
 app.whenReady().then(() => {
