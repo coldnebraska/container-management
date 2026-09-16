@@ -555,3 +555,13 @@ function clearWeight() {
 selectContainer()
 getContainerCount()
 selectItemByRRMA()
+
+// access rrma submission from submission window
+window.electronAPI.onRRMASubmission((value) => {
+    console.log(value)
+    if (value.rrma.length === 11 && value.rrma.includes('RRMA')) {
+        console.log('valid rrma')
+    } else {
+        console.log('invalid rrma')
+    }
+})

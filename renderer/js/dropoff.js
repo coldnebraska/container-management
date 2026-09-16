@@ -14,4 +14,6 @@ form.addEventListener('submit', (e) => {
     }
 
     input.value = ''
+
+    window.electronAPI.submitRRMA(rrmaInputData)
 })
