@@ -19,3 +19,10 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.dropoff-notice {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+}
