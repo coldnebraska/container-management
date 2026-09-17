@@ -18,6 +18,7 @@ details:hover {
 .container {
     border-right: 1px solid grey;
     padding: 0;
+    flex: 1;
 }
 
 .container > * > * {
@@ -25,15 +26,14 @@ details:hover {
 }
 
 .container:nth-child(2) {
-    flex: 1;
+    flex: 3;
 }
 
 .container:last-child {
     border: 0;
 }
 
-.container-header,
-.container .item-container .search-form {
+.container-header {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -81,6 +81,11 @@ details:hover {
     height: 100vh;
 }
 
+.item-container .search-form {
+    margin: 3px;
+    padding: 0;
+}
+
 .item-container .search-form input {
     width: 40%;
 }
@@ -89,7 +94,9 @@ details:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid grey;
+    border: 1px solid grey;
+    border-left: 0;
+    border-right: 0;
     background-color: lightgray;
 }
 
@@ -103,14 +110,14 @@ details:hover {
 }
 
 .sorting-headers #sort-selected {
-    width: 20px;
+    width: 30px;
 }
 
 .sorting-headers #sort-rrma {
     border: 1px solid grey;
     border-top: 0;
     border-bottom: 0;
-    padding-left: 10px;
+    padding-left: 16px;
     width: 130px;
 }
 
@@ -144,6 +151,11 @@ details:hover {
     background-color: rgb(221, 221, 221);
 }
 
+#error-item.item :nth-child(1) {
+    height: 18px;
+    width: 18px;
+}
+
 .item :nth-child(3) {
     flex: 1;
 }
@@ -153,17 +165,17 @@ details:hover {
     width: 150px;
 }
 
-.blue,
-.green,
-.red,
-.happy {
+.destination .blue,
+.destination .green,
+.destination .red,
+.destination .happy {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 10px;
 }
 
-#container-count {
+.destination #container-count {
     font-size: 12px;
     color: rgb(85, 85, 85);
 }
@@ -171,31 +183,53 @@ details:hover {
 .process {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-.selected-items,
+.process div:nth-child(3) {
+    margin-bottom: 20px;
+}
+
+.process div:last-child {
+    margin-top: auto;
+}
+
+.selected-items {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    gap: 5px;
+}
+
 .weight,
 .dimensions {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+}
+
+.weight p,
+.dimensions p,
+.dimensions span {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .weight .weight-inputs {
     display: flex;
-    align-items: center;
     gap: 10px;
 }
 
-.pound,
-.ounce {
+.weight .weight-inputs .pound,
+.weight .weight-inputs .ounce {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    align-items: flex-end;
+    gap: 3px;
+
 }
 
-.weight input {
+.weight input,
+.dimensions input {
     width: 25px;
     height: 20px;
     text-align: center;
@@ -203,8 +237,13 @@ details:hover {
 
 .dimensions input {
     width: 20px;
-    height: 20px;
-    text-align: center;
+}
+
+.dimensions fieldset {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    margin-bottom: 5px;
 }
 
 .actions {
@@ -213,15 +252,37 @@ details:hover {
     gap: 20px;
 }
 
+.process .tips {
+    display: flex;
+    flex-direction: column;
+}
+
+.process .tips .included,
+.process .tips .unknown,
+.process .tips .excluded {
+    display: flex;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.process .tips .icon {
+    flex: 1;
+}
+
+.process .tips p {
+    margin: 0;
+}
+
+.process .tips span {
+    font-weight: bold;
+    font-size: 14px;
+}
+
 #selected-item,
 #selected-container {
     background-color: lightblue;
 }
 
 #error-item {
-    background-color: lightcoral;
-}
-
-.search-form input {
-    margin-right: 10px;
+    background-color: rgba(253, 39, 39, 0.3);
 }
