@@ -50,12 +50,14 @@ closeOutButton.addEventListener('click', () => {
             console.log('closing out')
             // closeout()
         }
+
     } else {
         console.log("Selected Container:", selectedContainer.className)
         console.log("Dimensions:", dimensions)
         console.log("Total Weight:", poundInput.value + " lbs " + ounceInput.value + " oz")
         console.log("Total Items:", selectedItems.length)
         console.log("Selected Items:", selectedItems)
+        // closeout()
     }
 })
 
@@ -562,6 +564,7 @@ function populateItems(items) {
             itemContainer.innerHTML = `
                 <p></p>
                 <p id="rrma">${item.rrma}</p>
+                <p></p>
                 <p>${item.date_created}</p>
             `
             itemList.appendChild(itemContainer)
@@ -620,7 +623,6 @@ function selectItem(item) {
         </svg>
     `
     item.firstElementChild.replaceWith(iconElement)
-    // item.firstElementChild.checked = true
 
     // Randomly generate lbs between 1 and 9
     pounds = Math.floor(Math.random() * 9) + 1
@@ -756,6 +758,14 @@ function clearWeight() {
     ounceInput.value = 0
 }
 
+function closeout() {
+    // remove selected items from inventory list
+    // reset selected items
+    // reset excluded items
+    // reset selected count, weight, dimensions and override button
+    // refresh item list and container count for new entries
+}
+
 selectContainer()
 getContainerCount()
 selectItemByRRMA()
@@ -766,5 +776,4 @@ selectItemByRRMA()
 window.electronAPI.onRRMASubmission((value) => {
     console.log(value)
     dummyData.push(value)
-    getContainerCount()
 })

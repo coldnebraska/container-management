@@ -35,9 +35,7 @@ function createDropOffWindow() {
         }
     })
 
-    // if (isDev) {
-    //     aboutWindow.webContents.openDevTools()
-    // }
+    // aboutWindow.webContents.openDevTools()
 
     aboutWindow.loadFile(path.join(__dirname, './renderer/dropoff.html'))
 }

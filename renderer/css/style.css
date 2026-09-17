@@ -36,7 +36,6 @@ details:hover {
 .container .item-container .search-form {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
     padding: 10px;
     border-bottom: 1px solid rgb(85, 85, 85);
     height: 25px;
@@ -86,18 +85,54 @@ details:hover {
     width: 40%;
 }
 
+.sorting-headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    background-color: lightgray;
+}
+
+.sorting-headers p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.sorting-headers :nth-child(3) {
+    flex: 1;
+}
+
+.sorting-headers #sort-selected {
+    width: 20px;
+}
+
+.sorting-headers #sort-rrma {
+    border: 1px solid grey;
+    border-top: 0;
+    border-bottom: 0;
+    padding-left: 10px;
+    width: 130px;
+}
+
+
+.sorting-headers #sort-date {
+    width: 130px;
+    padding-left: 10px;
+    padding-right: 30px;
+    border-left: 1px solid grey;
+}
+
 #item-list {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    padding-bottom: 5px;
+    padding: 0 0 5px 0;
 }
 
 .item {
     display: flex;
     align-items: center;
     gap: 20px;
-    border-radius: 5px;
     padding: 5px;
 }
 
@@ -105,13 +140,17 @@ details:hover {
     margin: 0 5px;
 }
 
-.item:nth-child(odd) {
+.item:nth-child(even) {
     background-color: rgb(221, 221, 221);
 }
 
+.item :nth-child(3) {
+    flex: 1;
+}
+
 .item :last-child {
-    justify-self: flex-end;
-    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
 }
 
 .blue,
