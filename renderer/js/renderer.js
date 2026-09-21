@@ -48,7 +48,7 @@ closeOutButton.addEventListener('click', () => {
 
         if (confirmCloseout) {
             console.log('closing out')
-            // closeout()
+            closeout()
         }
 
     } else {
@@ -57,13 +57,13 @@ closeOutButton.addEventListener('click', () => {
         console.log("Total Weight:", poundInput.value + " lbs " + ounceInput.value + " oz")
         console.log("Total Items:", selectedItems.length)
         console.log("Selected Items:", selectedItems)
-        // closeout()
+        closeout()
     }
 })
 
 // dummy data for testing
 // const dummyData = []
-const dummyData = [
+let dummyData = [
     {
         container: "blue",
         rrma: "DHoJW4nRRMA",
@@ -586,11 +586,9 @@ function getContainerCount() {
     const blueCount = document.getElementById('blue-count')
     const greenCount = document.getElementById('green-count')
     const redCount = document.getElementById('red-count')
-    const happyCount = document.getElementById('happy-count')
     blueCount.innerHTML = 0
     greenCount.innerHTML = 0
     redCount.innerHTML = 0
-    happyCount.innerHTML = 0
 
     dummyData?.forEach(item => {
         if (item.container === 'blue') {
@@ -599,8 +597,6 @@ function getContainerCount() {
             greenCount.innerHTML = parseInt(greenCount.innerHTML) + 1 || 1
         } else if (item.container === 'red') {
             redCount.innerHTML = parseInt(redCount.innerHTML) + 1 || 1
-        } else if (item.container === 'happy') {
-            happyCount.innerHTML = parseInt(happyCount.innerHTML) + 1 || 1
         }
     })
 }
@@ -758,12 +754,41 @@ function clearWeight() {
     ounceInput.value = 0
 }
 
+function resetDimensions() {
+    const lengthInput = document.getElementById('length-input')
+    const widthInput = document.getElementById('width-input')
+    const heightInput = document.getElementById('height-input')
+
+    lengthInput.value = 18
+    widthInput.value = 18
+    heightInput.value = 18
+}
+
 function closeout() {
-    // remove selected items from inventory list
-    // reset selected items
-    // reset excluded items
-    // reset selected count, weight, dimensions and override button
-    // refresh item list and container count for new entries
+    const selectedRRMAs = []
+    selectedItems.forEach((selected) => {
+        selectedRRMAs.push(selected.item.children[1].innerHTML)
+    })
+
+    dummyData = dummyData.filter((data) => !selectedRRMAs.includes(data.rrma))
+
+    selectedItems = []
+    excludedItems = []
+
+    const overrideButton = document.getElementById('override-dimensions')
+    const fieldset = document.getElementById('dimension-inputs')
+    fieldset.disabled = true
+    overrideButton.disabled = false
+
+    const rrmaInput = document.getElementById('rrma-input')
+    rrmaInput.value = ''
+
+    clearItems()
+    clearWeight()
+    resetDimensions()
+    populateItems(dummyData)
+    getContainerCount()
+    countSelectedItems()
 }
 
 selectContainer()
@@ -771,9 +796,6 @@ getContainerCount()
 selectItemByRRMA()
 
 // access rrma submission from submission window
-// format validation done on submission
-// (needs duplicate rrma validation)
 window.electronAPI.onRRMASubmission((value) => {
-    console.log(value)
     dummyData.push(value)
 })

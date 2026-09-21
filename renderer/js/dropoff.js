@@ -7,7 +7,7 @@ let rrmaInputData = {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    const containerOptions = ['blue', 'green', 'red', 'happy']
+    const containerOptions = ['blue', 'green', 'red']
 
     rrmaInputData = {
         container: containerOptions[Math.floor(Math.random() * containerOptions.length)],
